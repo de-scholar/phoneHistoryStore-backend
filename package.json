@@ -1,0 +1,45 @@
+{
+  "name": "phone-history-store-backend",
+  "version": "1.0.0",
+  "description": "This is the phone history store backend made in nodejs/express",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node ./src/app.js",
+    "start": "babel-node ./src/app.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/de-scholar/phoneHistoryStore-backend.git"
+  },
+  "keywords": [
+    "NodeJS/Express",
+    "REST-API",
+    "PostgreSQL",
+    "React-native",
+    "Mobile-application",
+    "Sequelize"
+  ],
+  "author": "descholar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/de-scholar/phoneHistoryStore-backend/issues"
+  },
+  "homepage": "https://github.com/de-scholar/phoneHistoryStore-backend#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2"
+  },
+  "dependencies": {
+    "@babel/compat-data": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "babel-node": "^0.0.1-security",
+    "coveralls": "^3.0.11",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nyc": "^15.0.1"
+  }
+}
