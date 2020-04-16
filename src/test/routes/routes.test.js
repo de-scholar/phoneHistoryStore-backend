@@ -1,7 +1,6 @@
 /* eslint-disable no-undef */
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
-import { response } from 'express';
 import server from '../../app';
 import customMessages from '../../helpers/customMessages';
 import statusCodes from '../../helpers/statusCodes';
@@ -9,9 +8,7 @@ import mockData from '../data/mockData.test';
 
 chai.use(chaiHttp);
 
-const {
-  ok, badRequest, conflict, created,
-} = statusCodes;
+const { badRequest, conflict, created } = statusCodes;
 const {
   phoneNumberAlreadyExists,
   namesErrorMessage,
@@ -36,7 +33,7 @@ const {
   signupPasswordEmpty,
   signupFirstNameAndLastNameEmpty,
   signupPasswordAndEmailEmpty,
-} = mockData;
+} = mockData.signup;
 
 describe('Signup test', () => {
   it('Will create a new user, expect it to return an object with status code of 201, and response body containing a token', (done) => {
