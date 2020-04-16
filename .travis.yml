@@ -15,13 +15,13 @@ before_script:
   - psql -c "create database phonehistorystore_db_test;" -U postgres
 
 install:
-  - npm install
+  - yarn
 
 script:
-  - npm test
+  - yarn test
  
 notification:
   - email: false
 
 after_success:
-  - npm run coverage
+  - yarn run coverage

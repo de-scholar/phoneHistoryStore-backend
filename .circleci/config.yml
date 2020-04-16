@@ -10,17 +10,12 @@ workflows:
 jobs:
   test:
     docker:
-      - image: circleci/node:10
-      - image: circleci/postgres:10
+      - image: circleci/node:13
+      - image: circleci/postgres:11
         environment:
           POSTGRES_USER: postgres
-          POSTGRES_DB: phonehistorystore_db
+          POSTGRES_DB: phonehistorystore_db_test
           POSTGRES_PASSWORD: password
-    environment:
-      NODE_ENV: test
-      POSTGRES_USER: postgres
-      POSTGRES_DB: phonehistorystore_db
-      POSTGRES_PASSWORD: password
     steps:
       - run:
           name: Install ltree extension for Postgres

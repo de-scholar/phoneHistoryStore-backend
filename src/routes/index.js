@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import wlcmRouter from './api/WelcomeApi';
+import wlcmRouter from './api/welcome.routes';
+import apiRouter from './api/index';
 
-const apiRouter = Router();
+const allRoutes = Router();
 
-apiRouter.use('/', wlcmRouter);
+allRoutes.use('/', wlcmRouter);
+allRoutes.use('/api', apiRouter);
 
-export default apiRouter;
+export default allRoutes;
