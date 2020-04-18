@@ -8,7 +8,7 @@ const { validateSignupData } = new ValidateSignup();
 const { checkLoginCredentials } = new ValidateLogin();
 const { saveNewUser, retrieveUser } = new UserController();
 
-userRouter.post('/', validateSignupData, saveNewUser);
+userRouter.post('/signup', validateSignupData, saveNewUser);
 userRouter.post('/login', checkLoginCredentials, retrieveUser);
 
 export default userRouter;
