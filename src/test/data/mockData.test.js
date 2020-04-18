@@ -112,5 +112,27 @@ export default {
       Age: 24,
     },
   },
+  login: {
+    loginValidData: {
+      phoneNumber: '+123456789',
+      password: 'Phonehistory1.',
+    },
+    loginInValidData: {
+      phoneNumber: '+0000000000',
+      password: 'Phonehistory1.',
+    },
+    loginInValidPassword: {
+      phoneNumber: '+123456789',
+      password: '+0000000000',
+    },
+    loginPasswordEmpty: {
+      phoneNumber: '+123456789',
+    },
+    loginPhoneNumberEmpty: {
+      password: 'Phonehistory1.',
+    },
+    loginPhoneNumberAndPasswordEmpty: {
+    },
+  },
 
 };

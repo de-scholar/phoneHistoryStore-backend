@@ -6,4 +6,8 @@ export default {
   phoneNumberErrorMessage: 'The phone number is required and make sure that is on and working, and you can receive SMS',
   ageErrorMessage: 'Age is required, and it should a number in years',
   phoneNumberAlreadyExists: 'That phone number already exists',
+  somethingIsWrong: 'Something went wrong internally, please try again',
+  phoneNumberOrPasswordWrong: 'Your phone number or your password is wrong',
+  phoneNumberEmpty: 'Enter your phone number',
+  passwordEmpty: 'Enter your password',
 };

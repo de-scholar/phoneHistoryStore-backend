@@ -2,7 +2,6 @@ import Validators from '../validations/validators';
 import UserService from '../services/user.service';
 import statusCodes from '../helpers/statusCodes';
 import customMessages from '../helpers/customMessages';
-import ResponseHandlers from '../helpers/responseHandlers';
 
 const { badRequest, conflict } = statusCodes;
 const { phoneNumberAlreadyExists } = customMessages;
@@ -10,7 +9,15 @@ const { phoneNumberAlreadyExists } = customMessages;
  * @class
  * @classdesc it validate signup data
  */
-export default class ValidateSignup extends Validators {
+class ValidateSignup extends Validators {
+  /**
+   * @constructor
+   */
+  constructor() {
+    super();
+    this.res = {};
+  }
+
 /**
  * @param {object} req
  * @param {object} res
@@ -20,19 +27,21 @@ export default class ValidateSignup extends Validators {
  * @description it allows to continue if the signup data are valid otherwise
  * it sends error response to user
  */
-static validateSignupData = async (req, res, next) => {
+validateSignupData = async (req, res, next) => {
   this.res = res;
   const userData = req.body;
-  const { error } = this.validateUserData(userData);
+  const { error } = this.validateUserRegisterData(userData);
   if (!error) {
     const existingUser = await UserService.getBy({ phoneNumber: userData.phoneNumber });
     if (!existingUser) {
       next();
     } else {
-      new ResponseHandlers().errorResponse(this.res, conflict, phoneNumberAlreadyExists);
+      this.errorResponse(this.res, conflict, phoneNumberAlreadyExists);
     }
   } else {
-    this.displayValidationErrorMessage(error, this.res, badRequest);
+    this.displayValidationErrorMessage(this, error, this.res, badRequest);
   }
 };
 }
+
+export default ValidateSignup;
