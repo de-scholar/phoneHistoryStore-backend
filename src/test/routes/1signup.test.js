@@ -38,7 +38,7 @@ const {
 describe('Signup test', () => {
   it('Will create a new user, expect it to return an object with status code of 201, and response body containing a token', (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupValidData)
       .end((err, res) => {
@@ -51,7 +51,7 @@ describe('Signup test', () => {
   });
   it('Will create a new user, expect it to return an object with status code of 201, and response body containing a token', (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupWithSomeOtherUnnecessaryData)
       .end((err, res) => {
@@ -64,7 +64,7 @@ describe('Signup test', () => {
   });
   it('Will not create a new user because that user exists already, expect it to return an object with status code of 201, and response body containing a token', (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupDuplicateData)
       .end((err, res) => {
@@ -78,7 +78,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because that user exists already, expect it to return an object with status code of 409, 
   and response body containing an error message`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupDuplicateData)
       .end((err, res) => {
@@ -92,7 +92,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because the firstname is in bad format, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupFirstNameBadFormatData)
       .end((err, res) => {
@@ -106,7 +106,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because lastname is in bad format, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupLastNameBadFormatData)
       .end((err, res) => {
@@ -120,7 +120,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because email is invalid, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupEmailFormatData)
       .end((err, res) => {
@@ -134,7 +134,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because password is invalid, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupPasswordBadFormatData)
       .end((err, res) => {
@@ -148,7 +148,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because age is empty, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupAgeEmpty)
       .end((err, res) => {
@@ -162,7 +162,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because phonenumber is empty, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupPhoneNumberEmpty)
       .end((err, res) => {
@@ -176,7 +176,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because firstname is empty, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupFirstNameEmpty)
       .end((err, res) => {
@@ -190,7 +190,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because email is empty, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupEmailEmpty)
       .end((err, res) => {
@@ -204,7 +204,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because password is empty, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupPasswordEmpty)
       .end((err, res) => {
@@ -218,7 +218,7 @@ describe('Signup test', () => {
   it(`Will not create a new user because lastname is empty, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupLastNameEmpty)
       .end((err, res) => {
@@ -232,7 +232,7 @@ describe('Signup test', () => {
   it(`Will not create a new user, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupPasswordAndEmailEmpty)
       .end((err, res) => {
@@ -246,7 +246,7 @@ describe('Signup test', () => {
   it(`Will not create a new user, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupFirstNameAndLastNameEmpty)
       .end((err, res) => {
@@ -260,7 +260,7 @@ describe('Signup test', () => {
   it(`Will not create a new user, expect it to return an object with status code of 400,
    and response body containing an error`, (done) => {
     chai.request(server)
-      .post('/api/users')
+      .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send({})
       .end((err, res) => {
