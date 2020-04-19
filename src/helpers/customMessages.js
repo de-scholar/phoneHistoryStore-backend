@@ -10,4 +10,5 @@ export default {
   phoneNumberOrPasswordWrong: 'Your phone number or your password is wrong',
   phoneNumberEmpty: 'Enter your phone number',
   passwordEmpty: 'Enter your password',
+  tokenMissingOrInvalidErrorMsg: 'Authentication failed, please login or signup',
 };
