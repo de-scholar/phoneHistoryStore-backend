@@ -30,7 +30,7 @@ class ValidateSignup extends Validators {
 validateSignupData = async (req, res, next) => {
   this.res = res;
   const userData = req.body;
-  const { error } = this.validateUserRegisterData(userData);
+  const { error } = this.validateUserRegisterOrUpdateData({ user: userData });
   if (!error) {
     const existingUser = await UserService.getBy({ phoneNumber: userData.phoneNumber });
     if (!existingUser) {
