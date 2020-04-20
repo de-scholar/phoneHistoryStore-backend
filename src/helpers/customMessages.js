@@ -11,4 +11,10 @@ export default {
   phoneNumberEmpty: 'Enter your phone number',
   passwordEmpty: 'Enter your password',
   tokenMissingOrInvalidErrorMsg: 'Authentication failed, please login or signup',
+  userNotExistErrorMsg: 'This user does not exist',
+  requestProfileUseNumberErrMsg: 'You must pass an id in number, not a string',
+  unAuthorizedProfileUpdate: 'You cannot update profile which is not yours',
+  accountDeletedSuccessfulyMsg: 'The account is deleted successfully',
+  notDeleteOtherUserAccErrMsg: 'You cannot delete the account which is yours',
+  dontDeleteSuperuser: 'You cannot delete the superuser account',
 };

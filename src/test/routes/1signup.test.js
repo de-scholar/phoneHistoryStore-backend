@@ -33,6 +33,7 @@ const {
   signupPasswordEmpty,
   signupFirstNameAndLastNameEmpty,
   signupPasswordAndEmailEmpty,
+  signupThirdPartyData,
 } = mockData.signup;
 
 describe('Signup test', () => {
@@ -54,6 +55,19 @@ describe('Signup test', () => {
       .post('/api/users/signup')
       .set('Accept', 'Application/json')
       .send(signupWithSomeOtherUnnecessaryData)
+      .end((err, res) => {
+        if (err) done(err);
+        expect(res).to.have.status(created);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('token').to.be.a('string');
+        done();
+      });
+  });
+  it('Will create a new user, expect it to return an object with status code of 201, and response body containing a token', (done) => {
+    chai.request(server)
+      .post('/api/users/signup')
+      .set('Accept', 'Application/json')
+      .send(signupThirdPartyData)
       .end((err, res) => {
         if (err) done(err);
         expect(res).to.have.status(created);

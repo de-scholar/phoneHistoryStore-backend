@@ -33,12 +33,14 @@ class Validators extends ResponseHandlers {
   /**
    * @param {object} regex
    * @param {object} message
+   * @param {object} isUpdate
    * @returns {object} string
    * @method
    * @description it returns the cleared string to validate
    */
-  clearToValidate = (regex, message) => Joi.string().regex(regex).trim().required()
-    .messages(createValidationErrorMessage('string', message))
+  clearToValidate = (regex, message, isUpdate) => (isUpdate ? Joi.string().regex(regex).trim()
+    .messages(createValidationErrorMessage('string', message)) : Joi.string().regex(regex).trim().required()
+    .messages(createValidationErrorMessage('string', message)));
 
   /**
    * @param {object} userData
@@ -46,16 +48,19 @@ class Validators extends ResponseHandlers {
    * @description it takes userData and validate them, and after it returns the error messages
    * if something is wrong
    */
-  validateUserRegisterData = (userData) => {
+  validateUserRegisterOrUpdateData = (userData) => {
+    const { isUpdate, user } = userData;
     const schema = Joi.object({
-      firstName: this.clearToValidate(NAMES_REGEX, namesErrorMessage),
-      lastName: this.clearToValidate(NAMES_REGEX, namesErrorMessage),
-      password: this.clearToValidate(PASSWORD_REGEX, passwordErrorMessage),
-      email: this.clearToValidate(EMAIL_REGEX, emailErrorMessage),
-      phoneNumber: Joi.string().required().messages(createValidationErrorMessage('string', phoneNumberErrorMessage)),
-      age: Joi.number().required().messages(createValidationErrorMessage('string', ageErrorMessage)),
+      firstName: this.clearToValidate(NAMES_REGEX, namesErrorMessage, isUpdate),
+      lastName: this.clearToValidate(NAMES_REGEX, namesErrorMessage, isUpdate),
+      password: this.clearToValidate(PASSWORD_REGEX, passwordErrorMessage, isUpdate),
+      email: this.clearToValidate(EMAIL_REGEX, emailErrorMessage, isUpdate),
+      phoneNumber: isUpdate ? Joi.string().messages(createValidationErrorMessage('string', phoneNumberErrorMessage))
+        : Joi.string().required().messages(createValidationErrorMessage('string', phoneNumberErrorMessage)),
+      age: isUpdate ? Joi.number().messages(createValidationErrorMessage('string', ageErrorMessage))
+        : Joi.number().required().messages(createValidationErrorMessage('string', ageErrorMessage)),
     });
-    return schema.validate(userData, { abortEarly: false, allowUnknown: true });
+    return schema.validate(user, { abortEarly: false, allowUnknown: true });
   }
 
   /**

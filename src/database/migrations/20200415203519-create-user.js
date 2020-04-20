@@ -32,13 +32,19 @@ export default {
       type: Sequelize.BOOLEAN,
       defaultValue: true,
     },
+    userRole: {
+      type: Sequelize.STRING,
+      defaultValue: 'basic user',
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
+      defaultValue: new Date(),
     },
     updatedAt: {
       allowNull: false,
       type: Sequelize.DATE,
+      defaultValue: new Date(),
     },
     deletedAt: {
       allowNull: true,

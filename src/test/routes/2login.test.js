@@ -25,7 +25,11 @@ const {
   loginPasswordEmpty,
   loginPhoneNumberEmpty,
   loginPhoneNumberAndPasswordEmpty,
+  superuserLogin,
+  loginThirdParty,
 } = mockData.login;
+
+const userToken = [];
 
 describe('Login tests', () => {
   it('Will login a user, expect it to return a response with status 200, and a token', (done) => {
@@ -35,6 +39,35 @@ describe('Login tests', () => {
       .send(loginValidData)
       .end((err, res) => {
         if (err) done(err);
+        userToken.push(`Bearer ${res.body.token}`);
+        expect(res).to.have.status(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('token').to.be.a('string');
+        done();
+      });
+  });
+  it('Will login a super user, expect it to return a response with status 200, and a token', (done) => {
+    chai.request(server)
+      .post('/api/users/login')
+      .set('Accept', 'Application/json')
+      .send(superuserLogin)
+      .end((err, res) => {
+        if (err) done(err);
+        userToken.push(`Bearer ${res.body.token}`);
+        expect(res).to.have.status(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('token').to.be.a('string');
+        done();
+      });
+  });
+  it('Will login a third party user, expect it to return a response with status 200, and a token', (done) => {
+    chai.request(server)
+      .post('/api/users/login')
+      .set('Accept', 'Application/json')
+      .send(loginThirdParty)
+      .end((err, res) => {
+        if (err) done(err);
+        userToken.push(`Bearer ${res.body.token}`);
         expect(res).to.have.status(ok);
         expect(res.body).to.be.an('object');
         expect(res.body).to.have.property('token').to.be.a('string');
@@ -107,3 +140,5 @@ describe('Login tests', () => {
       });
   });
 });
+
+export default userToken;

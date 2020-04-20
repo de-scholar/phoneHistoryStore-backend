@@ -9,6 +9,7 @@ export default (sequelize, DataTypes) => {
     age: DataTypes.INTEGER,
     isPhoneVerified: DataTypes.BOOLEAN,
     isEmailVerified: DataTypes.BOOLEAN,
+    userRole: DataTypes.STRING,
   }, {
     paranoid: true,
     timestamp: true,
