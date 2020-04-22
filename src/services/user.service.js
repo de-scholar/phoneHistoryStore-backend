@@ -15,15 +15,6 @@ class UserService extends CrudRepository {
     this.model = user;
     this.tableAttributes = Object.keys(this.model.rawAttributes);
   }
-
-  /**
-     * @param {object} inputData
-     * @returns {object} savedData
-     */
-  createNewUser = async (inputData) => {
-    const savedData = await this.saveAll(inputData);
-    return savedData;
-  }
 }
 
 export default new UserService();
