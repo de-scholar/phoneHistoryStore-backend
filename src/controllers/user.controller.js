@@ -35,7 +35,7 @@ export default class UserController extends ResponseHandlers {
   saveNewUser = async (req, res) => {
     this.res = res;
     req.body.password = hashPassword(req.body.password);
-    const { dataValues } = await UserService.createNewUser(req.body);
+    const { dataValues } = await UserService.saveAll(req.body);
     this.successResponse(this.res, created, null, generateToken(dataValues), null);
   }
 

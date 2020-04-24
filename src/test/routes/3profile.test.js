@@ -104,18 +104,7 @@ describe('Profile tests', () => {
         done();
       });
   });
-  it('Will not retrieve user\'s profile, expect it to return a response of 401 status, and error properties', (done) => {
-    chai.request(server)
-      .get('/api/users/profile')
-      .set('Authorization', tokenOfUserWhoDoesnExist)
-      .end((err, res) => {
-        if (err) done(err);
-        expect(res).to.have.status(unAuthorized);
-        expect(res.body).to.be.an('object');
-        expect(res.body).to.have.property('error').to.be.a('string').to.equal(tokenMissingOrInvalidErrorMsg);
-        done();
-      });
-  });
+
   it('Will update my profile, expect it to return a response of 200 status, and data properties', (done) => {
     chai.request(server)
       .patch('/api/users/profile')
